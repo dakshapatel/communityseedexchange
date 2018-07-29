@@ -3,14 +3,21 @@ source 'http://rubygems.org'
 gem 'sinatra'
 gem 'activerecord', '~> 4.2', '>= 4.2.6', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+gem 'rails_12factor'
 gem 'rake'
 gem 'require_all'
-gem 'sqlite3'
 gem 'thin'
-gem 'shotgun'
-gem 'pry'
 gem 'bcrypt'
-gem "tux"
+gem 'foreman'
+gem 'pg', '0.20'
+
+
+group :development do
+  gem 'sqlite3'
+  gem 'shotgun'
+  gem 'pry'
+  gem "tux"
+end
 
 group :test do
   gem 'rspec'
