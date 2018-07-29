@@ -13,24 +13,20 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
-  get '/users/login' do
-    erb :'users/login'
-  end
-
-  post '/users/login' do
-    erb :'users/login'
-  end
-
-  get '/users/sign_up' do
-    erb :'users/signup'
-  end
-
-  post '/users/sign_up' do
+  get '/users/signup' do
     erb :'users/signup'
   end
 
   post '/users/signup' do
+    erb :'users/signup'
+  end
+
+
+
+  post '/users/signup' do
     erb :seeds
   end
+
+
 
 end
