@@ -9,7 +9,7 @@ class SeedsController < ApplicationController
       redirects to '/'
     end
   end
-  
+
   get '/seeds/new' do
     if session[:user_id]
       erb :"seeds/create_seeds"
@@ -18,7 +18,7 @@ class SeedsController < ApplicationController
     end
   end
 
-  post '/seeds' do #create action
+  post '/seeds/new' do #create action
     if params[:name] == ""
       redirect to '/seeds/new'
     else
@@ -31,7 +31,7 @@ class SeedsController < ApplicationController
   get '/seeds/:id' do
     if session[:user_id]
         @seed = Seed.find_by(params[:id])
-        erb :'seeds/show_seed'
+        erb :'seeds/show_seeds'
     else
         redirect to '/'
     end
@@ -40,7 +40,7 @@ class SeedsController < ApplicationController
   get '/seeds/:id/edit' do
         if session[:user_id]
             @seed = Seed.find_by(params[:id])
-            erb :'seeds/seed_tweet'
+            erb :'seeds/show_seeds'
         else
             redirect to '/'
         end
@@ -60,7 +60,7 @@ class SeedsController < ApplicationController
 
     end
 
-    delete '/seeds/:id/delete' do
+    post '/seeds/:id/delete' do
         @seed = Seed.find_by_id(params[:id])
         @seed.delete
 
