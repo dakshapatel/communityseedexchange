@@ -1,41 +1,38 @@
 class UsersController < ApplicationController
 
-  get '/owners' do
-    @owners = Owner.all
-    erb :'/owners/index'
+  get '/users/signup' do
+    erb :'users/signup'
   end
 
-  get '/owners/new' do
-    @pets = Pet.all
-    erb :'/owners/new'
+  post '/users/signup' do
+    @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
+    session[:user_id] = @user.id
+     redirect to '/seeds'
   end
 
-  post '/owners' do
-
-    @owner = Owner.create(params[:owner])
-    if !params["pet"]["name"].empty?
-      @owner.pets << Pet.create(name: params["pet"]["name"])
-    end
-    @owner.save
-    redirect to "owners/#{@owner.id}"
+  #need error message upon login
+  get '/users/login' do
+    if session[:user_id]
+      redirect to '/seeds'
+    else
+      erb :welcome
+  end
   end
 
-  get '/owners/:id/edit' do
-    @owner = Owner.find(params[:id])
-    erb :'/owners/edit'
+  post '/users/login' do
+  @user = User.find_by(:username => params[:username])
+  if @user != nil && @user.authenticate(params[:password])
+    session[:user_id] = @user.id
+    redirect to 'seeds'
+  else
+     "please try again"
+    redirect to '/'
+  end
   end
 
-  get '/owners/:id' do
-    @owner = Owner.find(params[:id])
-    erb :'/owners/show'
-  end
 
-  post '/owners/:id' do
-    @owner = Owner.find(params[:id])
-    @owner.update(params["owner"])
-    if !params["pet"]["name"].empty?
-      @owner.pets << Pet.create(name: params["pet"]["name"])
-    end
-    redirect to "owners/#{@owner.id}"
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'users/show'
   end
 end
