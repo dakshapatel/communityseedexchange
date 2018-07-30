@@ -23,26 +23,35 @@ class ApplicationController < Sinatra::Base
      redirect to '/seeds'
   end
 
-  get '/seeds' do
-    erb :'/seeds/seeds'
-  end
+  # get '/seeds' do
+  #   erb :'/seeds'
+  # end
 
-  get '/user_login' do
+  get '/users/login' do
     if session[:user_id]
       redirect to '/seeds'
     else
-      erb :welcome
+      erb :'users/login'
   end
 end
 
-post '/login' do
-  @user = User.gind_by(:username => params[:username])
-  if @user != nil && authenticate(params[:password])
+post '/users/login' do
+  @user = User.find_by(:username => params[:username])
+  if @user != nil && @user.authenticate(params[:password])
     session[:user_id] = @user.id
-    redirect to 'seeds/seeds'
+    redirect to 'seeds'
   else
-    puts "please try again"
-    redirect to '/welcome'
+     "please try again"
+    redirect to '/'
+  end
+end
+
+get '/seeds' do
+  if session[:user_id]
+    @seeds = Seed.all
+    erb :'seeds/seeds'
+  else
+    redirects to '/'
   end
 end
 
