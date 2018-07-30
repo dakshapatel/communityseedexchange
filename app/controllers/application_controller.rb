@@ -18,16 +18,44 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/users/signup' do
-    @user = User.create(params)
+    @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
     session[:user_id] = @user.id
      redirect to '/seeds'
+  end
+
+  get '/seeds' do
+    erb :'/seeds/seeds'
   end
 
   get '/user_login' do
     if session[:user_id]
       redirect to '/seeds'
-    erb :user_login
+    else
+      erb :welcome
   end
+end
+
+post '/login' do
+  @user = User.gind_by(:username => params[:username])
+  if @user != nil && authenticate(params[:password])
+    session[:user_id] = @user.id
+    redirect to 'seeds/seeds'
+  else
+    puts "please try again"
+    redirect to '/welcome'
+  end
+end
+
+get '/logout' do
+  if session[:user_id]
+    session.clear
+    redirect to '/welcome'
+  else
+    redirect to 'welcome'
+  end
+end
+
+
 
   helpers do
     def logged_in?
