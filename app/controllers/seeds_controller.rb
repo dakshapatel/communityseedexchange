@@ -1,16 +1,13 @@
 class SeedsController < ApplicationController
 
-
+#allows seeds view to display all seeds
   get '/seeds' do
-    if session[:user_id]
+     session[:user_id]
       @seeds = Seed.all
       erb :'seeds/seeds'
-    else
-      redirects to '/'
-    end
   end
 
-  get '/seeds/new' do
+  get '/seeds/myseeds' do
     if session[:user_id]
       erb :"seeds/create_seeds"
     else
@@ -18,7 +15,7 @@ class SeedsController < ApplicationController
     end
   end
 
-  post '/seeds/new' do #create action
+  post '/seeds/myseeds' do #create action
     if params[:name] == ""
       redirect to '/seeds/new'
     else
@@ -30,8 +27,8 @@ class SeedsController < ApplicationController
 
   get '/seeds/:id' do
     if session[:user_id]
-        @seed = Seed.find_by(params[:id])
-        erb :'seeds/show_seeds'
+        @seed = Seed.find_by(params[:user_id])
+        erb :'seeds/myseeds'
     else
         redirect to '/'
     end
@@ -54,6 +51,8 @@ class SeedsController < ApplicationController
         else
 
           @seed.name = params[:name]
+          @seed.type = params[:type]
+          @seed.description = params[:description]
           @seed.save
           redirect to "/seeds/#{@seed.id}/edit"
         end
@@ -64,7 +63,7 @@ class SeedsController < ApplicationController
         @seed = Seed.find_by_id(params[:id])
         @seed.delete
 
-        redirect to '/seeds'
+        redirect to '/seeds/edit_seeds'
     end
 
 

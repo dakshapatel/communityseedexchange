@@ -13,44 +13,6 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
-  get '/users/signup' do
-    erb :'users/signup'
-  end
-
-  post '/users/signup' do
-    @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-    session[:user_id] = @user.id
-     redirect to '/seeds'
-  end
-
-#need error message upon login
-  get '/users/login' do
-    if session[:user_id]
-      redirect to '/seeds'
-    else
-      erb :welcome
-  end
-end
-
-post '/users/login' do
-  @user = User.find_by(:username => params[:username])
-  if @user != nil && @user.authenticate(params[:password])
-    session[:user_id] = @user.id
-    redirect to 'seeds'
-  else
-     "please try again"
-    redirect to '/'
-  end
-end
-
-get '/seeds' do
-  if session[:user_id]
-    @seeds = Seed.all
-    erb :'seeds/seeds'
-  else
-    redirects to '/'
-  end
-end
 
 get '/logout' do
   if session[:user_id]
