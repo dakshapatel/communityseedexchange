@@ -23,15 +23,12 @@ class ApplicationController < Sinatra::Base
      redirect to '/seeds'
   end
 
-  # get '/seeds' do
-  #   erb :'/seeds'
-  # end
-
+#need error message upon login
   get '/users/login' do
     if session[:user_id]
       redirect to '/seeds'
     else
-      erb :'users/login'
+      erb :welcome
   end
 end
 
