@@ -1,58 +1,50 @@
 class SeedsController < ApplicationController
 
-#allows seeds view to display all seeds
+#check
   get '/seeds' do
      session[:user_id]
       @seeds = Seed.all
       erb :'seeds/seeds'
   end
-
+#check
   get '/seeds/myseeds' do
      session[:user_id]
       erb :"seeds/create_seeds"
   end
 
-  post '/seeds/new' do
-    if params[:name] == ""
-        redirect to '/seeds/new'
-      else
+  post '/seeds' do
+
       @user = User.find_by(session[:user_id])
-      @seed = Seed.create(:name => params[:name],:type =>params[:type],:description =>params[:description], :user_id => @user.id)
-    redirect to "/seeds/myseeds"
+      @seed = Seed.create(:name => params[:name], :user_id => @user.id)
+    redirect to "/seeds/#{@seed.id}"
+
   end
+
+  get '/seeds/:id' do
+    if session[:user_id]
+        @seed = Seed.find_by(params[:user_id])
+        erb :'seeds/show_seeds'
+    else
+        redirect to '/'
+    end
   end
-  #
-  # get '/seeds/:id' do
-  #   if session[:user_id]
-  #       @seed = Seed.find_by(params[:user_id])
-  #       erb :'seeds/myseeds'
-  #   else
-  #       redirect to '/'
-  #   end
-  # end
 
   get '/seeds/:id/edit' do
-        if session[:user_id]
+
             @seed = Seed.find_by(params[:id])
-            erb :'seeds/show_seeds'
-        else
-            redirect to '/'
-        end
+            erb :'seeds/edit_seeds'
+
     end
 
     patch '/seeds/:id' do
       @seed = Seed.find_by_id(params[:id])
 
-        if params[:name] == ""
-          redirect to "/seeds/#{@seed.id}/edit"
-        else
-
           @seed.name = params[:name]
           @seed.type = params[:type]
           @seed.description = params[:description]
           @seed.save
-          redirect to "/seeds/#{@seed.id}/edit"
-        end
+          redirect to "/seeds/#{@seed.id}"
+
 
     end
 
