@@ -1,15 +1,20 @@
-<form method="post" action="/seeds/new">
-<a href="/seeds/myseeds"><input type="submit" name="submit" value="My Seeds"></a>
+<form action="/seeds" method="POST">
+    <input type="text" name="name">
+    <input type="submit" name="Submit" id="submit">
 </form>
 <!--<form method="post" action="/logout">
 <input type="submit" id="submit" value="logout">-->
-
-
-<h3>Available Seeds</h3>
-<h4>Fruit Seeds</h4><br>
 
 <% @seeds.each do |seed| %>
     <ul>
         <li><%=seed.name%></li>
     </ul>
-<% end %><br><br>
+<% end %>
+
+<a href="/seeds/new"><p>Create Seed</p></a>
+<form method="post" action="/logout">
+<input type="submit" id="sumbit" name="Submit">
+</form>
+
+<h3>Available Seeds</h3>
+<h4>Fruit Seeds</h4><br>

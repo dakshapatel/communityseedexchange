@@ -1,4 +1,10 @@
+
+
 class UsersController < ApplicationController
+
+
+  enable :sessions
+
 #Check
   get '/users/signup' do
     erb :'users/create_user'
@@ -25,9 +31,10 @@ class UsersController < ApplicationController
     @user = User.find_by(:username => params[:username])
     if @user != nil && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect to 'seeds'
+      redirect to '/seeds'
     else
-       "please try again"
+
+      flash[:message] = "Please try again."
       redirect to '/'
     end
   end

@@ -4,10 +4,10 @@ class SeedsController < ApplicationController
   get '/seeds' do
      session[:user_id]
       @seeds = Seed.all
-      erb :'seeds/seeds'
+      erb :'/seeds/seeds'
   end
 #check
-  get '/seeds/myseeds' do
+  get '/seeds/new' do
      session[:user_id]
       erb :"seeds/create_seeds"
   end
@@ -22,7 +22,7 @@ class SeedsController < ApplicationController
 
   get '/seeds/:id' do
     if session[:user_id]
-        @seed = Seed.find_by(params[:user_id])
+        @seed = Seed.find_by_id(params[:id])
         erb :'seeds/show_seeds'
     else
         redirect to '/'
@@ -40,7 +40,7 @@ class SeedsController < ApplicationController
       @seed = Seed.find_by_id(params[:id])
 
           @seed.name = params[:name]
-          @seed.type = params[:type]
+          @seed.category = params[:category]
           @seed.description = params[:description]
           @seed.save
           redirect to "/seeds/#{@seed.id}"

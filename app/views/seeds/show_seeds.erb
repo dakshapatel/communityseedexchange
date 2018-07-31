@@ -1,7 +1,12 @@
 <h1>Seeds</h1>
-<%=@seed.name%>
+
+
+<%= @seed.name %>
 
 <form method="POST" action="/seeds/<%=@seed.id%>/delete">
-  <input type="submit" value="Delete Seed">
-</form>
+    <input id="hidden" type="hidden" name="_method" value="delete">
+
+    <input class="input-text" type="submit" value="Delete seed">
+
+<form>
   <a href="/seeds/<%= @seed.id %>/edit"><p>Edit Seed</p></a>
