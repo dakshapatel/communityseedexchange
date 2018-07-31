@@ -40,19 +40,18 @@ class SeedsController < ApplicationController
       @seed = Seed.find_by_id(params[:id])
 
           @seed.name = params[:name]
-          @seed.category = params[:category]
-          @seed.description = params[:description]
+
           @seed.save
           redirect to "/seeds/#{@seed.id}"
 
 
     end
 
-    post '/seeds/:id/delete' do
+    delete '/seeds/:id/delete' do
         @seed = Seed.find_by_id(params[:id])
         @seed.delete
 
-        redirect to '/seeds/edit_seeds'
+        redirect to '/seeds'
     end
 
 

@@ -2,7 +2,6 @@
 <form method="POST" action="/seeds/<%=@seed.id%>">
     <input id="hidden" type="hidden" name="_method" value="patch">
     <input type="text" name="name" value="<%=@seed.name%>">
-    <input type="text" name="category" value="<%=@seed.category%>">
-    <input type="text" name="description" value="<%=@seed.description%>">
+    
     <input type="submit" name="Submit" id="submit">
 </form>
