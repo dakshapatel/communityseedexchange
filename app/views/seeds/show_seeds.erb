@@ -4,6 +4,6 @@
 <%= @seed.description %>
 
 <form method="POST" action="/seeds/<%=@seed.id%>/delete">
-  
+  <input type="submit" value="Delete Seed">
 </form>
   <a href="/seeds/<%= @seed.id %>/edit"><p>Edit Seed</p></a>

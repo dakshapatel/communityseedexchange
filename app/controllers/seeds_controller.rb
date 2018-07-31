@@ -7,22 +7,17 @@ class SeedsController < ApplicationController
       erb :'seeds/seeds'
   end
 
-  get '/seeds/myseeds' do
-    if session[:user_id]
+  get '/seeds/new' do
+     session[:user_id]
       erb :"seeds/create_seeds"
-    else
-      redirect to '/'
-    end
   end
 
-  post '/seeds/myseeds' do #create action
-    if params[:name] == ""
-      redirect to '/seeds/new'
-    else
+  post '/seeds' do #create action
+
       @user = User.find_by(session[:user_id])
       @seed = Seed.create(:name => params[:name],:type =>params[:type],:description =>params[:description], :user_id => @user.id)
-      redirect to "/seeds/#{@seed.id}"
-    end
+    redirect to "/seeds/#{@seed.id}"
+
   end
 
   get '/seeds/:id' do

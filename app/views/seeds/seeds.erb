@@ -1,4 +1,4 @@
-<form method="post" action="/seeds/myseeds">
+<form method="post" action="/seeds/create_seeds">
 <a href="/seeds/myseeds"><input type="submit" name="submit" value="My Seeds"></a>
 </form>
 <!--<form method="post" action="/logout">
@@ -7,6 +7,7 @@
 
 <h3>Available Seeds</h3>
 <h4>Fruit Seeds</h4><br>
+
 <% @seeds.each do |seed| %>
     <ul>
         <li><%=seed.name%></li>
