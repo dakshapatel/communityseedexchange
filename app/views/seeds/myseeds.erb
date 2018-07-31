@@ -9,7 +9,7 @@
 
 
   <div>
-    <form action="/seeds" method="post">
+    <form action="/seeds/new" method="post">
     <input type="text" name="name" placeholder="Name">
     <input type="text" name="name" placeholder="Type">
   <input type="text" name="description" placeholder="Description">
@@ -18,9 +18,10 @@
   </div>
   </body>
 
-  <h3>List My Seeds</h3>
-  <p><%= @seed.name %>
+   <h3>List My Seeds</h3>
+  <!--<p><%= @seed.name %>
    <form method="post" action="/seeds/<%=@seed.id%>/delete">
     <input type="submit" value="Delete Tweet">
   </form>
    <a href="/seeds/<%=@seed.id%>/edit">Edit Seed </a>
+-->

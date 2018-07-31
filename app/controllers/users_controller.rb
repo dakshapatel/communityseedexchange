@@ -1,33 +1,35 @@
 class UsersController < ApplicationController
-
+#Check
   get '/users/signup' do
-    erb :'users/signup'
+    erb :'users/create_user'
   end
 
+#check
   post '/users/signup' do
     @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
     session[:user_id] = @user.id
      redirect to '/seeds'
   end
 
+  #check
   #need error message upon login
   get '/users/login' do
     if session[:user_id]
       redirect to '/seeds'
     else
-      erb :welcome
+      erb :index
+    end
   end
-  end
-
+#check
   post '/users/login' do
-  @user = User.find_by(:username => params[:username])
-  if @user != nil && @user.authenticate(params[:password])
-    session[:user_id] = @user.id
-    redirect to 'seeds'
-  else
-     "please try again"
-    redirect to '/'
-  end
+    @user = User.find_by(:username => params[:username])
+    if @user != nil && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to 'seeds'
+    else
+       "please try again"
+      redirect to '/'
+    end
   end
 
 

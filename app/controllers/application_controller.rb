@@ -10,16 +10,16 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :welcome
+    erb :index
   end
 
 
 get '/logout' do
   if session[:user_id]
     session.clear
-    redirect to '/welcome'
+    redirect to '/index'
   else
-    redirect to 'welcome'
+    redirect to 'index'
   end
 end
 
