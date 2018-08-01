@@ -9,12 +9,12 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  get '/' do
+  get '/index' do
     erb :index
   end
 
 
-get '/logout' do
+post '/logout' do
   if session[:user_id]
     session.clear
     redirect to '/index'

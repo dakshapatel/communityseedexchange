@@ -15,7 +15,7 @@ class SeedsController < ApplicationController
   post '/seeds' do
 
       @user = User.find_by(session[:user_id])
-      @seed = Seed.create(:name => params[:name], :user_id => @user.id)
+      @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
     redirect to "/seeds/#{@seed.id}"
 
   end
