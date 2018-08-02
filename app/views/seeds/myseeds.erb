@@ -1,13 +1,6 @@
+<h1>My Seeds</h1>
 
-
-
-
-
-
-
-  <h1>Create a Seed</h1>
-
-
+<h4>Add a New Seed</h4>
   <div>
     <form action="/seeds" method="post">
     <input type="text" name="name" placeholder="Name">
@@ -19,9 +12,4 @@
   </body>
 
    <h3>List My Seeds</h3>
-  <!--<p><%= @seed.name %>
-   <form method="post" action="/seeds/<%=@seed.id%>/delete">
-    <input type="submit" value="Delete Tweet">
-  </form>
-   <a href="/seeds/<%=@seed.id%>/edit">Edit Seed </a>
--->
+   <%= @seed.name %>

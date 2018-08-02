@@ -1,10 +1,6 @@
 
 
 class UsersController < ApplicationController
-
-
-  enable :sessions
-
 #Check
   get '/users/signup' do
     erb :'users/create_user'
@@ -14,7 +10,7 @@ class UsersController < ApplicationController
   post '/users/signup' do
     @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
     session[:user_id] = @user.id
-     redirect to '/seeds'
+    redirect to '/seeds'
   end
 
   #check

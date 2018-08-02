@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  get '/index' do
+  get '/' do
     erb :index
   end
 
@@ -17,10 +17,8 @@ class ApplicationController < Sinatra::Base
 post '/logout' do
   if session[:user_id]
     session.clear
-    redirect to '/index'
-  else
-    redirect to 'index'
   end
+  redirect to '/'
 end
 
 
@@ -32,6 +30,13 @@ end
 
     def current_user
       User.find(session[:user_id])
+    end
+
+    def authenticate_user
+      if !logged_in?
+        # add flash message saying you must be logged in
+        redirect "/"
+      end
     end
   end
 
