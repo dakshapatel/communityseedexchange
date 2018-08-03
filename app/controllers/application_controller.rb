@@ -34,7 +34,7 @@ end
 
     def authenticate_user
       if !logged_in?
-        # add flash message saying you must be logged in
+        flash[:notice] = "Please log in."
         redirect "/"
       end
     end

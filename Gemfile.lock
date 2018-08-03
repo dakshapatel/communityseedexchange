@@ -127,6 +127,7 @@ DEPENDENCIES
   foreman
   pg (= 0.20)
   pry
+  rack
   rack-flash3
   rack-test
   rails_12factor

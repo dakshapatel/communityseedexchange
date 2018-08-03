@@ -11,6 +11,7 @@ gem 'bcrypt'
 gem 'foreman'
 gem 'pg', '0.20'
 gem 'rack-flash3'
+gem 'rack'
 
 
 group :development do

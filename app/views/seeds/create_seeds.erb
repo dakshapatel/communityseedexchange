@@ -1,13 +1,15 @@
 
 
-<h1>Create a Seed</h1>
-<h2>Select Type of Seed!</h2>
 
-<div>
+
+<h1>Add a New Seed</h1>
+
   <form action="/seeds" method="post">
-  <input type="text" name="name" placeholder="Name">
-  <input type="text" name="catergory" placeholder="Catergory">
-    <input type="text" name="description" placeholder="description">
-
-<input type="submit" id="sumbit" name="Submit">
-</form>
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="catergory" placeholder="catergory">
+    <input type="text" name="description" placeholder="Description">
+    <input type="submit" id="sumbit" name="Submit">
+  </form>
+  
+<h2>My Seeds!</h2>
+  <%=@myseeds%>

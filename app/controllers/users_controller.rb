@@ -30,7 +30,7 @@ class UsersController < ApplicationController
       redirect to '/seeds'
     else
 
-      flash[:message] = "Please try again."
+      authenticate_user = "Please try again."
       redirect to '/'
     end
   end
