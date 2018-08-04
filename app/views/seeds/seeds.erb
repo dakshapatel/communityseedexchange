@@ -7,11 +7,11 @@
 
 <h3>Available Seeds</h3>
 <h4>Fruit Seeds</h4><br>
+<ol>
 <% @seeds.each do |seed| %>
-    <ul>
-        <li><%=seed.name%></li>
-    </ul>
+        <li><a href="/seeds<%=seed.id%>"><%=seed.name%></a></li>
 <% end %>
+</ol>
 
 
 

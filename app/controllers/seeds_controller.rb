@@ -25,21 +25,19 @@ class SeedsController < ApplicationController
   post '/seeds' do
     @user = User.find_by(session[:user_id])
     @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
-    redirect to "/myseeds"
+    redirect to "/seeds/#{@seed.id}"
   end
 
   get '/myseeds' do
+    @myseeds = Seed.find_by(params[:user_id])
     erb :'seeds/myseeds'
   end 
 
   #show, show a particular seed based on ID
   get '/seeds/:id' do
-    if session[:user_id]
       @seed = Seed.find_by(params[:id])
-      erb :'seeds/myseeds'
-    else
-      redirect to '/'
-    end
+      erb :'seeds/show_seeds'
+    
   end
 
 
