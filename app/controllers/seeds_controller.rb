@@ -21,7 +21,7 @@ class SeedsController < ApplicationController
     authenticate_user
     @user = User.find_by(session[:user_id])
     @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
-    redirect to "/users_seeds"
+    redirect to "/seeds/#{@seed.id}"
   end
 
   get '/users_seeds' do 
@@ -46,7 +46,7 @@ class SeedsController < ApplicationController
     erb :'seeds/edit'
   end
 
-  patch '/seeds/:id' do
+  patch '/seeds/:id/edit' do
     @seed = Seed.find_by_id(params[:id])
     @seed.name = params[:name]
     @seed.save

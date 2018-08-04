@@ -1,12 +1,20 @@
-<a href="/myseeds" ><input type="submit" name="My seeds " value="My seeds "></a>
 
-<form method="post" action="/logout">
-<input type="submit" id="submit" value="logout">
+<a href="/seeds" ><input type="submit" name="Browse Seeds" value="Browse Seeds"></a>
+<a href="/" ><input type="submit" name="logout" value="log out"></a>
 
-<h1>Seeds</h1>
+<h1>My Seeds</h1>
  <%=@seed.name%>
 
  <form method="POST" action="/seeds/:id/delete">
+ 
       <input id="hidden" type="hidden" name="_method" value="delete">
       <input type="submit" value="delete">
     </form>
+
+    <form action="/seeds/:id/edit" method="POST" >
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    
+    <input type="submit" name="Submit" value="edit">
+
+
+</form>
