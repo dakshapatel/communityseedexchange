@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if session[:user_id]
       redirect to '/seeds'
     else
-      erb :index
+      erb :homepage
     end
   end
 #check

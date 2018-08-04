@@ -1,0 +1,22 @@
+
+
+  
+
+
+ <a href="/seeds/new"><input type="submit" name="submit" value="My Seeds"></a>
+
+<form method="post" action="/logout">
+<input type="submit" id="submit" value="logout">
+
+
+<h3>Available Seeds</h3>
+<h4>Fruit Seeds</h4><br>
+<ol>
+<% @seeds.each do |seed| %>
+      <li><a href="/seeds<%=seed.id%>">  <%=seed.name%></a></li>
+<% end %>
+</ol>
+
+
+
+  

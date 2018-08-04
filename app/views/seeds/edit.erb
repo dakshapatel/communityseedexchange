@@ -1,7 +1,9 @@
 <h1>Edit Seed</h1>
-<form action="/seeds/<%=@seed.id%>" method="POST" >
+<form action="/seeds/:id" method="POST" >
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <input type="text" name="name" value="<%=@seed.name%>">
+    <input type="text" name="name" value="old">
     
     <input type="submit" name="Submit" id="submit">
+
+
 </form>
