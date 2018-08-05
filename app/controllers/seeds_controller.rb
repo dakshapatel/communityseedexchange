@@ -17,29 +17,35 @@ class SeedsController < ApplicationController
     erb :"seeds/new"
   end
 
-  post '/myseeds' do
+  post '/seeds' do
     authenticate_user
     @user = User.find_by(session[:user_id])
     @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
     redirect to "/seeds/#{@seed.id}"
   end
 
-  get '/users_seeds' do 
-    @user = User.find_by(session[:user_id])
-    
-    @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
-    erb :'/seeds/users_seeds'
-  end 
-
   get '/seeds/:id' do
     @seed = Seed.find_by(params[:id])
     erb :'seeds/show'
   end
 
-  get '/index' do
-    @myseeds = Seed.find_by(params[:user_id])
-    erb :'seeds/index'
+
+  get '/seeds/myseeds' do
+
+
   end 
+  # get '/users_seeds' do 
+  #   @user = User.find_by(session[:user_id])
+    
+  #   @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
+  #   erb :'/seeds/users_seeds'
+  # end 
+
+  get '/seeds/:id' do
+    @seed = Seed.find_by(params[:id])
+    erb :'seeds/edit'
+  end
+
 
   get '/seeds/:id/edit' do
     @seed = Seed.find_by(params[:id])
@@ -58,7 +64,7 @@ class SeedsController < ApplicationController
     @seed = Seed.find_by(params[:id])
     @seed.delete
 
-    redirect to '/seeds'
+    redirect to '/index'
   end
 
 

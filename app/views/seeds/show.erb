@@ -3,18 +3,6 @@
 <a href="/" ><input type="submit" name="logout" value="log out"></a>
 
 <h1>My Seeds</h1>
- <%=@seed.name%>
+ <a href="/seeds<%=@seed.id%>"><%=@seed.name%></a> <h3>I want this link to go to another page that has edit and delete functionality</h3>
 
- <form method="POST" action="/seeds/:id/delete">
- 
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <input type="submit" value="delete">
-    </form>
-
-    <form action="/seeds/:id/edit" method="POST" >
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    
-    <input type="submit" name="Submit" value="edit">
-
-
-</form>
+ <h3>Want all of my seeds listed here</h3>
