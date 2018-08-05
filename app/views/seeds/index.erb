@@ -6,14 +6,28 @@
 </form>
 
 <h3>Available Seeds</h3>
-<h4>I want to group the seeds by catergory(fruit, vegetable,herb)</h4>
-
-<h4>i want the user to be able to click on the link and have the link direct them to a page where the user can post a message to the owner of that seed.</h4>
+<h3>Fruits<h3>
 <ol>
-<% @seeds.each do |seed| %>
-      <li><a href="/seeds<%=seed.id%>">  <%=seed.name%></a></li>
+<%@seeds.select { |item| item.catergory == 'fruit'}.each do |seed| %>
+      <li><a href="/seeds<%=seed.id%>">
+      <%=seed.name%></a> -- 
+      <%=seed.description%></li>
 <% end %>
+
+<h2>Herbs</h2>
+<%@seeds.select { |item| item.catergory == 'herb'}.each do |seed| %>
+      <li><a href="/seeds<%=seed.id%>">  <%=seed.name%></a> --
+      <%=seed.description%></li>
+<% end %>
+
 </ol>
+
+<h2>Vegetables</h2>
+<%@seeds.select { |item| item.catergory == 'vegetable'}.each do |seed| %>
+      <li><a href="/seeds<%=seed.id%>">  <%=seed.name%></a> --
+      <%=seed.description%></li>
+<% end %>
+
 
 
 
