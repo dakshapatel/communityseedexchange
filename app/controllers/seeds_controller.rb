@@ -7,28 +7,22 @@ class SeedsController < ApplicationController
   get '/seeds' do
     session[:user_id]
     @seeds = Seed.all
-    
     erb :'/seeds/index'
   end
 
-  get '/seeds:id' do
-    
-    erb :'posts/post'
-  end 
-
   get '/seeds/new' do
-   
     erb :"seeds/new"
   end
 
   post '/seeds' do
-    
     @user = User.find_by(session[:user_id])
     @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
-    
     redirect to "/seeds/user_seeds"
   end
 
+  get '/seeds:id' do
+    erb :'posts/new'
+  end 
 
   get '/seeds/user_seeds' do 
     @seeds = current_user.seeds

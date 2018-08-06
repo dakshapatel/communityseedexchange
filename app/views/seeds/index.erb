@@ -16,6 +16,7 @@
       <%=seed.description%></li>
 <% end %>
 
+
 <h3>Herbs</h3>
 <%@seeds.select { |item| item.catergory == 'herb'}.each do |seed| %>
       <li><a href="/seeds<%=seed.id%>">  <%=seed.name%></a> --
