@@ -5,10 +5,9 @@
 <h2>My Seeds</h2>
 <ol>
 <%@seeds.each do |seed|%>
-    <li><a href="/seeds/<%=seed.id%>/edit"> 
-<input type="submit" name="Edit" value="edit"></a>
-<a href="/seeds<%=seed.id%>delete"><input type="submit" name="Edit" value="Delete"></a><%=seed.name%> -
-<%=seed.description%></li>
+    <li></a>
+<a href="/seeds<%=seed.id%>"><%=seed.name%> -
+<%=seed.description%></a></li>
 <%end%>
 <h3>post by other users</h3>
 </ol>

@@ -26,9 +26,14 @@ class SeedsController < ApplicationController
     erb :'seeds/users_seeds'
   end 
 
-  get '/seeds/:id' do
+  # get '/seeds:id' do
+  #   @seed = Seed.find_by(params[:id])
+  #   erb :'seeds/show'
+  # end
+
+  get '/seeds:id' do
     @seed = Seed.find_by(params[:id])
-    erb :'seeds/show'
+    redirect to "/seeds/#{@seed.id}/edit"
   end
 
   get '/seeds/:id/edit' do
@@ -36,12 +41,11 @@ class SeedsController < ApplicationController
     erb :'seeds/edit'
   end
 
-  patch '/seeds/:id' do
+  patch '/seeds/:id/edit' do
     @seed = Seed.find_by(params[:id])
     @seed.name = params[:name]
     @seed.description = params[:description]
     @seed.save
-    
     redirect to "/seeds/user_seeds"
   end
 

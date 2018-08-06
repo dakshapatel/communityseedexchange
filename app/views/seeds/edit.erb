@@ -1,10 +1,16 @@
 <h1>Edit Seed</h1>
-<form action="/seeds/<%= @seed.id %>"  method="POST" >
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <p>Name: <input type="text" name="name" value="<%= @seed.name %>">
-    Description: <input type="text" name="description" value="<%= @seed.description %>"></p>
-    
-    <input type="submit" name="Submit" id="submit">
-
-
-</form>
+<!DOCTYPE html>
+<html>
+  <body>
+    <form method='POST' action='/seeds/<%= @seed.id %>/edit'>
+      <input id="hidden" type="hidden" name="_method" value="patch">
+      <h4>Name: <%= @seed.name %></h4>
+      <label for "name">Edit:</label>
+      <input type="text" id="name" name="name">
+      <h4>Description: <%= @seed.description%></h4>
+      <label for "description">Edit:</label>
+      <input type="text" id="description" name="description">
+      <button type="submit">Update</button>
+    </form>
+  </body>
+</html>
