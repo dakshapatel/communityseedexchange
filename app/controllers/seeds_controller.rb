@@ -13,7 +13,7 @@ class SeedsController < ApplicationController
 
   get '/seeds:id' do
     
-    erb :'seeds/post'
+    erb :'posts/post'
   end 
 
   get '/seeds/new' do
@@ -25,15 +25,14 @@ class SeedsController < ApplicationController
     
     @user = User.find_by(session[:user_id])
     @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
-    redirect to "/seeds/#{@seed.id}"
+    
+    redirect to "/seeds/user_seeds"
   end
 
-  get '/seeds/user_seeds' do 
-    
-    @seeds = current_user.seeds
-    binding.pry
-    erb :'seeds/users_seeds'
 
+  get '/seeds/user_seeds' do 
+    @seeds = current_user.seeds
+    erb :'seeds/users_seeds'
   end 
 
   get '/seeds/:id' do

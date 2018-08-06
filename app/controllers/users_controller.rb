@@ -1,20 +1,15 @@
-
-
 class UsersController < ApplicationController
-#Check
+
   get '/users/signup' do
     erb :'users/create_user'
   end
 
-#check
   post '/users/signup' do
     @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
     session[:user_id] = @user.id
     redirect to '/seeds'
   end
 
-  #check
-  #need error message upon login
   get '/users/login' do
     if session[:user_id]
       redirect to '/seeds'
@@ -22,7 +17,7 @@ class UsersController < ApplicationController
       erb :homepage
     end
   end
-#check
+
   post '/users/login' do
     @user = User.find_by(:username => params[:username])
     if @user != nil && @user.authenticate(params[:password])
@@ -34,7 +29,6 @@ class UsersController < ApplicationController
       redirect to '/'
     end
   end
-
 
   get '/users/:slug' do
     @user = User.find_by_slug(params[:slug])
