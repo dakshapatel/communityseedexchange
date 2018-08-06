@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
   end
 
 
-post '/logout' do
+get '/logout' do
   if session[:user_id]
     session.clear
   end

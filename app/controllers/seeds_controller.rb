@@ -20,9 +20,6 @@ class SeedsController < ApplicationController
     redirect to "/seeds/user_seeds"
   end
 
-  get '/seeds:id' do
-    erb :'posts/new'
-  end 
 
   get '/seeds/user_seeds' do 
     @seeds = current_user.seeds
@@ -40,10 +37,12 @@ class SeedsController < ApplicationController
   end
 
   patch '/seeds/:id' do
-    @seed = Seed.find_by_id(params[:id])
+    @seed = Seed.find_by(params[:id])
     @seed.name = params[:name]
+    @seed.description = params[:description]
     @seed.save
-    redirect to "/seeds/#{@seed.id}"
+    
+    redirect to "/seeds/user_seeds"
   end
 
   delete '/seeds/:id/delete' do
@@ -52,5 +51,7 @@ class SeedsController < ApplicationController
 
     redirect to '/index'
   end
+
+  
 
 end
