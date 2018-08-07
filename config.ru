@@ -8,4 +8,4 @@ use Rack::MethodOverride
 run ApplicationController
 use SeedsController
 use UsersController
-use PostController
+

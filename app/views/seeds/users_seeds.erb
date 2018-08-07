@@ -6,9 +6,9 @@
 <ol>
 <%@seeds.each do |seed|%>
     <li></a>
-<a href="/seeds<%=seed.id%>"><%=seed.name%> -
+<a href="/seeds/<%=seed.id%>">
+<%=seed.name%> -
 <%=seed.description%></a></li>
 <%end%>
-<h3>post by other users</h3>
 </ol>
 

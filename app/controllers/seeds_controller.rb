@@ -10,6 +10,12 @@ class SeedsController < ApplicationController
     erb :'/seeds/index'
   end
 
+  get '/seeds/user_seeds' do 
+    session[:user_id]
+    @seeds = current_user.seeds
+    erb :'seeds/users_seeds'
+  end 
+
   get '/seeds/new' do
     erb :"seeds/new"
   end
@@ -21,41 +27,35 @@ class SeedsController < ApplicationController
   end
 
 
-  get '/seeds/user_seeds' do 
-    @seeds = current_user.seeds
-    erb :'seeds/users_seeds'
-  end 
-
-  # get '/seeds:id' do
-  #   @seed = Seed.find_by(params[:id])
-  #   erb :'seeds/show'
-  # end
-
-  get '/seeds:id' do
-    @seed = Seed.find_by(params[:id])
-    redirect to "/seeds/#{@seed.id}/edit"
-  end
-
-  get '/seeds/:id/edit' do
+  get '/seeds/:id' do
     @seed = Seed.find_by(params[:id])
     erb :'seeds/edit'
   end
 
-  patch '/seeds/:id/edit' do
-    @seed = Seed.find_by(params[:id])
+  patch '/seeds/:id' do
+    @seed = Seed.find_by_id(params[:id])
     @seed.name = params[:name]
     @seed.description = params[:description]
     @seed.save
-    redirect to "/seeds/user_seeds"
+    redirect to "/seeds/#{@seed.id}"
+  end
+
+
+  get '/seeds/:id' do
+    @seed = Seed.find_by(params[:id])
+    erb :'seeds/users_seeds'
+  end
+  
+  get '/seeds/:id/edit' do
+    @seed = Seed.find_by(params[:id])
+    erb :'seeds/edit'
   end
 
   delete '/seeds/:id/delete' do
     @seed = Seed.find_by(params[:id])
     @seed.delete
 
-    redirect to '/index'
+    redirect to 'seeds/users_seeds'
   end
-
-  
 
 end

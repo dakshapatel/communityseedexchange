@@ -1,8 +1,12 @@
+<a href="/seeds/user_seeds"><input type="submit" name="submit" value="My Seeds"></a>
+<form method="post" action="/seeds/<%=@seed.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete">
+</form>
+
 <h1>Edit Seed</h1>
-<!DOCTYPE html>
-<html>
-  <body>
-    <form method='POST' action='/seeds/<%= @seed.id %>/edit'>
+
+    <form method='POST' action='/seeds/<%= @seed.id%>'>
       <input id="hidden" type="hidden" name="_method" value="patch">
       <h4>Name: <%= @seed.name %></h4>
       <label for "name">Edit:</label>
@@ -12,5 +16,4 @@
       <input type="text" id="description" name="description">
       <button type="submit">Update</button>
     </form>
-  </body>
-</html>
+  
