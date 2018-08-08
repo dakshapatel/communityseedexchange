@@ -1,11 +1,10 @@
 
 <a href="/seeds" ><input type="submit" name="Browse Seeds" value="Browse Seeds"></a>
-<a href="/" ><input type="submit" name="logout" value="log out"></a>
-
-<h1>My Seeds</h1>
-
- <a href='/seeds/<%=@seed.id%>/edit'><%=@seed.name%></a> 
+<a href="/" ><input type="submit" name="logout" value="log out"></a><br>
 
 
+<%=@seed.name%>
+<%=@seed.availability%>
+<%=@seed.location%>
+<%=@seed.description%>
 
- 

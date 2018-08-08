@@ -3,10 +3,28 @@
 <a href="/" ><input type="submit" name="logout" value="log out"></a>
 
 <h2>My Seeds</h2>
-<ol>
-<%@seeds.each do |seed|%>
+<h3>Fruit:</h3>
+<ol><%@seeds.select { |item| item.catergory == 'fruit'}.each do |seed|%>
     <li></a>
-<a href="/seeds/<%=seed.id%>">
+<a href="/seeds/<%=seed.id%>/edit">
+<%=seed.name%> -
+<%=seed.description%></a></li>
+<%end%>
+</ol>
+
+<h3>Herbs:</h3>
+<ol><%@seeds.select { |item| item.catergory == 'herb'}.each do |seed|%>
+    <li></a>
+<a href="/seeds/<%=seed.id%>/edit">
+<%=seed.name%> -
+<%=seed.description%></a></li>
+<%end%>
+</ol>
+
+<h3>Vegetables:</h3>
+<ol><%@seeds.select { |item| item.catergory == 'vegetable'}.each do |seed|%>
+    <li></a>
+<a href="/seeds/<%=seed.id%>/edit">
 <%=seed.name%> -
 <%=seed.description%></a></li>
 <%end%>
