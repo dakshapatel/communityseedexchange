@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 20180731194829) do
     t.string  "catergory"
     t.string  "description"
     t.integer "user_id"
-    t.string  "availability"
-    t.string  "location"
   end
 
   create_table "users", force: :cascade do |t|

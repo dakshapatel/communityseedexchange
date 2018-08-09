@@ -10,7 +10,7 @@ gem 'thin'
 gem 'bcrypt'
 gem 'foreman'
 gem 'pg', '0.20'
-gem 'sinatra-flash'
+gem 'rack-flash3'
 gem 'rack'
 
 

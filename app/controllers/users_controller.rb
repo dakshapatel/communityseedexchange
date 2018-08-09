@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+  use Rack::Flash
 
   get '/users/signup' do
     erb :'users/create_user'
@@ -24,8 +27,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/seeds'
     else
-
-      authenticate_user = "Please try again."
+      flash[:message]= "Please try again."
       redirect to '/'
     end
   end

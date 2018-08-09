@@ -1,32 +1,28 @@
 <a href="/seeds/user_seeds"><input type="submit" name="submit" value="My Seeds"></a>
 
 
-
 <a href="/logout"><input type="submit"  name="submit" value="Log Out"></a>
-
-
 
 
 <h1>Seeds</h1>
 <h2>Fruits</h2>
 
 <%@seeds.select { |item| item.catergory == 'fruit'}.each do |seed| %>
-      <li><a href="/seeds/<%=seed.id%>">
-      <%=seed.name%></a> -- 
+      <li>
+      <%=seed.name%></a> : 
       <%=seed.description%></li>
 <% end %><br>
 
 <h2>Herbs</h2>
 <%@seeds.select { |item| item.catergory == 'herb'}.each do |seed| %>
-      <li><a href="/seeds/<%=seed.id%>">  <%=seed.name%></a> --
+      <li> <%=seed.name%></a> :
       <%=seed.description%></li>
 <% end %><br>
 
 
-
 <h2>Vegetables</h2>
 <%@seeds.select { |item| item.catergory == 'vegetable'}.each do |seed| %>
-      <li><a href="/seeds/<%=seed.id%>">  <%=seed.name%></a> --
+      <li><%=seed.name%></a> :
       <%=seed.description%></li>
 <% end %>
 

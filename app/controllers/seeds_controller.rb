@@ -44,19 +44,10 @@ class SeedsController < ApplicationController
     redirect to "/seeds/user_seeds"
   end
 
-  get '/seeds/users_seeds' do
-    erb :'seeds/edit'
-  end 
-
   post '/seeds/:id/delete' do
-    
     @seed = Seed.find(params[:id])
     @seed.delete
-
-    redirect to 'seeds/users_seeds'
+    redirect to '/seeds/user_seeds'
   end
-
-  
- 
 
 end

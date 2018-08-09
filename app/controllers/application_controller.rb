@@ -1,7 +1,8 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
-
+  use Rack::Flash
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -14,14 +15,12 @@ class ApplicationController < Sinatra::Base
     erb :homepage
   end
 
-
-get '/logout' do
-  if session[:user_id]
-    session.clear
+  get '/logout' do
+    if session[:user_id]
+      session.clear
+    end
+    redirect to '/'
   end
-  redirect to '/'
-end
-
 
   helpers do
     def logged_in?
