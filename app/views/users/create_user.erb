@@ -1,6 +1,10 @@
 <!-- check -->
 
 <h1>Users</h1>
+<%if flash.has?(:message)%>
+        <%=flash[:message]%>
+        <p class='errors' style="color: orange;"></p>
+        <%end%>
 <form method="post" action="/users/signup">
   <p>Name: <input type="text" name="username" required></p>
   <p>Email: <input type="email" name="email" required ></p>

@@ -1,5 +1,7 @@
 require 'pry'
 class SeedsController < ApplicationController
+
+
   before '/seeds*' do
     authenticate_user
   end
@@ -23,7 +25,12 @@ class SeedsController < ApplicationController
   post '/seeds' do
     @user = User.find(session[:user_id])
     @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
-    redirect to "/seeds/user_seeds"
+    if @seed.save
+      redirect to "/seeds/user_seeds"
+    else
+      flash[:message]= "Please enter the seed name."
+      redirect to '/seeds/new'
+    end
   end
 
   get '/seeds/:id' do
@@ -32,8 +39,11 @@ class SeedsController < ApplicationController
   end
 
   get '/seeds/:id/edit' do
-    @seed = Seed.find(params[:id])
-    erb :'seeds/edit'
+    if @seed=current_user.seeds.find(params[:id])
+      erb :'seeds/edit'
+    else
+      redirect to "/seeds/user_seeds"
+    end
   end
 
   patch '/seeds/:id' do
@@ -51,3 +61,5 @@ class SeedsController < ApplicationController
   end
 
 end
+
+

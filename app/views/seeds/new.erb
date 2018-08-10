@@ -6,13 +6,18 @@
 
 
 <h1>Add a New Seed</h1>
-
+<div class='errors'>
+ <%if flash.has?(:message)%>
+        <%=flash[:message]%>
+        <p class='errors' style="color: orange;"></p>
+        <%end%>
+</div>
   <form action="/seeds" method="post">
-    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="name" placeholder="Name" required>
     <input type="radio" name="catergory" value="fruit">Fruit
     <input type="radio" name="catergory" value="herb">Herb
     <input type="radio" name="catergory" value="vegetable">Vegetable
-    <input type="text" name="description" placeholder="Description">
+    <input type="textbox" name="description" placeholder="Description">
     <input type="submit" id="sumbit" name="Submit">
   </form>
   
