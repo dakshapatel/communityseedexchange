@@ -24,7 +24,7 @@ class SeedsController < ApplicationController
 
   post '/seeds' do
     @user = User.find(session[:user_id])
-    @seed = Seed.create(:name => params[:name], :catergory => params[:catergory], :description => params[:description], :user_id => @user.id)
+    @seed = @user.seeds.build(:name => params[:name], :catergory => params[:catergory], :description => params[:description])
     if @seed.save
       redirect to "/seeds/user_seeds"
     else
