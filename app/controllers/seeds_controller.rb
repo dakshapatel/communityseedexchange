@@ -39,7 +39,7 @@ class SeedsController < ApplicationController
   end
 
   get '/seeds/:id/edit' do
-    if @seed=current_user.seeds.find(params[:id])
+    if @seed=current_user.seeds.find_by_id(params[:id])
       erb :'seeds/edit'
     else
       redirect to "/seeds/user_seeds"
@@ -47,17 +47,25 @@ class SeedsController < ApplicationController
   end
 
   patch '/seeds/:id' do
-    @seed = Seed.find(params[:id])
-    @seed.name = params[:name]
-    @seed.description = params[:description]
-    @seed.save
-    redirect to "/seeds/user_seeds"
+    if @seed=current_user.seeds.find_by_id(params[:id])
+      @seed.name = params[:name]
+      @seed.description = params[:description]
+      @seed.save
+      redirect to "/seeds/user_seeds"
+    else
+      flash[:message]= "This is not your seed."
+      redirect to "/seeds/seeds"
+    end
   end
 
   post '/seeds/:id/delete' do
-    @seed = Seed.find(params[:id])
-    @seed.delete
-    redirect to '/seeds/user_seeds'
+    if @seed=current_user.seeds.find_by_id(params[:id])
+      @seed.delete
+      redirect to '/seeds/user_seeds'
+    else
+      flash[:message]= "This is not your seed."
+      redirect to "/seeds/seeds"
+    end
   end
 
 end
